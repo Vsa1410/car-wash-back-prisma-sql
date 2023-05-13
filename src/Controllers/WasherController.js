@@ -15,8 +15,22 @@ module.exports = {
         res.json(washer)
     },
     async index(req,res){
-        const washers = await prisma.washer.findMany()
+        const washers = await prisma.washer.findMany({
+            include:{
+                works:true,
+                works2:true
+            }
+        })
         res.json(washers)
+    },
+    async findOne(req,res){
+        const id = Number(req.params.id)
+        const unique = await prisma.washer.findUnique({
+            where:{
+                id:id
+            }
+        })
+        res.json(unique)
     },
     async change(req,res){
         const id =  Number(req.params.id)
@@ -35,6 +49,7 @@ module.exports = {
 
 
     },
+
     async delete(req,res){
         const id  = Number(req.params.id)
         const washer = await prisma.washer.delete({

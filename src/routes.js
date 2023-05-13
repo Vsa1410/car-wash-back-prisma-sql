@@ -17,6 +17,7 @@ routes.delete('/work/:id', WorkController.delete)
 
 routes.post('/washer', WasherController.store)
 routes.get('/washer', WasherController.index)
+routes.get('/washer/:id', WasherController.findOne)
 routes.put('/washer/:id', WasherController.change)
 routes.delete('/washer/:id', WasherController.delete)
 
