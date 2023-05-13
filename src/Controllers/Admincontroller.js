@@ -16,8 +16,18 @@ module.exports = {
         res.json(admins)
     },
     async index (req,res){
+        
         const balance = await prisma.admin.findMany()
         res.json(balance)
+    },
+    async balance (req,res){
+        const sum = await prisma.work.groupBy({
+            by:['paid'],
+            _sum:{
+                value: true
+            }
+        })
+        res.json(sum)
     },
     async change(req,res){
         const id = req.params.id

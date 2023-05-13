@@ -58,5 +58,30 @@ module.exports = {
             }
         })
         res.json(washer + "Deletado com sucesso")
+    },
+    async withdraw(req,res){
+        const id = Number(req.params.id)
+        const {value} = req.body
+
+        const washer = await prisma.washer.update({
+            where:{
+                id:id
+            },
+            data:{
+                balance:{
+                    decrement:Number(value)
+                }
+            }
+        })
+        res.json(washer)
+    },
+    async balance(req,res){
+        const sum  = await prisma.work.groupBy({
+            by:['washerId'],
+            _sum:{
+                value:true
+            }
+        })
+        res.json(sum)
     }
 }

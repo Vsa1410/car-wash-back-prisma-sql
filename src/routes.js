@@ -20,12 +20,15 @@ routes.get('/washer', WasherController.index)
 routes.get('/washer/:id', WasherController.findOne)
 routes.put('/washer/:id', WasherController.change)
 routes.delete('/washer/:id', WasherController.delete)
+routes.put('/washerwithdraw/:id', WasherController.withdraw)
+routes.get('/washersum', WasherController.balance)
 
 //Admin Routes
 
 routes.post('/admin',Admincontroller.store)
 routes.get('/admin',Admincontroller.index)
 routes.put('/admin/:id', Admincontroller.change)
+routes.get('/adminbalance', Admincontroller.balance)
 
 //Maintenance routes
 
